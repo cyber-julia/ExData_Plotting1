@@ -1,0 +1,7 @@
+data<- file("household_power_consumption.txt", "r")
+cat(grep("(^Date)|(^[1|2]/2/2007)",readLines(data), value=TRUE), sep="\n", file="selected.txt")
+close(data)
+DT<-read.table('selected.txt', sep=";", header=TRUE)
+hist(DT$Global_active_power, col="red", xlab="Global active power (kilowatts)", main="Global Active Power")
+dev.copy(png, file="plot1.png")
+dev.off()
